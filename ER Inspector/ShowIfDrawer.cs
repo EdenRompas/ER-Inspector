@@ -1,64 +1,67 @@
 using UnityEngine;
 using UnityEditor;
 
-[System.AttributeUsage(System.AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-public class ShowIfAttribute : PropertyAttribute
+namespace EREditor.Inspector
 {
-    public string conditionName;
-
-    public ShowIfAttribute(string conditionName)
+    [System.AttributeUsage(System.AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
+    public class ShowIfAttribute : PropertyAttribute
     {
-        this.conditionName = conditionName;
+        public string conditionName;
+
+        public ShowIfAttribute(string conditionName)
+        {
+            this.conditionName = conditionName;
+        }
     }
-}
 
 #if UNITY_EDITOR
 
-[CustomPropertyDrawer(typeof(ShowIfAttribute))]
-public class ShowIfDrawer : PropertyDrawer
-{
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    [CustomPropertyDrawer(typeof(ShowIfAttribute))]
+    public class ShowIfDrawer : PropertyDrawer
     {
-        ShowIfAttribute showIfAttribute = attribute as ShowIfAttribute;
-
-        SerializedProperty condition = property.serializedObject.FindProperty(showIfAttribute.conditionName);
-        if (condition != null && condition.propertyType == SerializedPropertyType.Boolean)
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            bool show = condition.boolValue;
+            ShowIfAttribute showIfAttribute = attribute as ShowIfAttribute;
 
-            if (show)
+            SerializedProperty condition = property.serializedObject.FindProperty(showIfAttribute.conditionName);
+            if (condition != null && condition.propertyType == SerializedPropertyType.Boolean)
             {
-                EditorGUI.PropertyField(position, property, label, true);
+                bool show = condition.boolValue;
+
+                if (show)
+                {
+                    EditorGUI.PropertyField(position, property, label, true);
+                }
+            }
+            else
+            {
+                EditorGUI.HelpBox(position, "ShowIf error: Condition not found or not a boolean.", MessageType.Error);
             }
         }
-        else
-        {
-            EditorGUI.HelpBox(position, "ShowIf error: Condition not found or not a boolean.", MessageType.Error);
-        }
-    }
 
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-    {
-        float height = EditorGUI.GetPropertyHeight(property, label, true);
-
-        if (!IsPropertyVisible(property))
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            height += EditorGUIUtility.standardVerticalSpacing;
+            float height = EditorGUI.GetPropertyHeight(property, label, true);
+
+            if (!IsPropertyVisible(property))
+            {
+                height += EditorGUIUtility.standardVerticalSpacing;
+            }
+
+            return height;
         }
 
-        return height;
-    }
-
-    private bool IsPropertyVisible(SerializedProperty property)
-    {
-        ShowIfAttribute showIfAttribute = attribute as ShowIfAttribute;
-        SerializedProperty condition = property.serializedObject.FindProperty(showIfAttribute.conditionName);
-        if (condition != null && condition.propertyType == SerializedPropertyType.Boolean)
+        private bool IsPropertyVisible(SerializedProperty property)
         {
-            return condition.boolValue;
+            ShowIfAttribute showIfAttribute = attribute as ShowIfAttribute;
+            SerializedProperty condition = property.serializedObject.FindProperty(showIfAttribute.conditionName);
+            if (condition != null && condition.propertyType == SerializedPropertyType.Boolean)
+            {
+                return condition.boolValue;
+            }
+            return false;
         }
-        return false;
     }
-}
 
 #endif
+}
