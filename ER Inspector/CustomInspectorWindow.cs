@@ -80,8 +80,8 @@ namespace EREditor.Inspector
             EditorGUILayout.Space();
 
             EditorGUILayout.BeginVertical(GUI.skin.box);
-            EditorGUILayout.LabelField("Scene Object Only", EditorStyles.boldLabel);
-            GUILayout.Label("[SceneObjectOnly(\"Scene Object Only Name\")]");
+            EditorGUILayout.LabelField("Scene Only", EditorStyles.boldLabel);
+            GUILayout.Label("[SceneOnly(\"Scene Only Name\")]");
             GUILayout.Label("[SerializeField] private int _variable;");
             EditorGUILayout.EndVertical();
 
