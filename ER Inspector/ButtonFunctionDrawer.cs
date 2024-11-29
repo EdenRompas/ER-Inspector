@@ -97,7 +97,7 @@ namespace EREditor.Inspector
                 else if (parameters[i].ParameterType == typeof(float))
                 {
                     if (parameterValues[i] == null)
-                        parameterValues[i] = 0;
+                        parameterValues[i] = 0f;
 
                     parameterValues[i] = EditorGUILayout.FloatField(parameters[i].Name, (float)parameterValues[i]);
                 }
