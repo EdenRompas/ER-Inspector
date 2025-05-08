@@ -10,7 +10,15 @@
 
 ###
 
-<p align="left">Title<br>Adds a text heading above a variable, useful for grouping or highlighting sections in the Inspector.<br><br>Info Box<br>Displays an information box containing explanations or notes related to a serialized variable, helpful for documentation or usage guidance.<br><br>Show If<br>Conditionally displays a variable in the Inspector only if a specific boolean value is true. This helps keep the Inspector clean and only shows relevant data when needed.<br><br>Read Only<br>Makes a variable viewable but not editable in the Inspector. Ideal for displaying runtime data or values that shouldn't be modified manually.<br><br>Asset Only<br>Restricts variable assignment to assets only (e.g., prefabs, sprites, materials). It prevents scene objects from being assigned to the variable.<br><br>Scene Only<br>Opposite of Asset Only, this limits variable references to scene objects (Hierarchy), disallowing asset assignments.<br><br>- Button<br>Enables calling a method directly from the Inspector using a button, great for debugging or executing editor-side functions quickly.</p>
+<ul align="left">
+  <li><strong>Title</strong><br>Adds a text heading above a variable, useful for grouping or highlighting sections in the Inspector.</li><br>
+  <li><strong>Info Box</strong><br>Displays an information box containing explanations or notes related to a serialized variable, helpful for documentation or usage guidance.</li><br>
+  <li><strong>Show If</strong><br>Conditionally displays a variable in the Inspector only if a specific boolean value is true. This helps keep the Inspector clean and only shows relevant data when needed.</li><br>
+  <li><strong>Read Only</strong><br>Makes a variable viewable but not editable in the Inspector. Ideal for displaying runtime data or values that shouldn't be modified manually.</li><br>
+  <li><strong>Asset Only</strong><br>Restricts variable assignment to assets only (e.g., prefabs, sprites, materials). It prevents scene objects from being assigned to the variable.</li><br>
+  <li><strong>Scene Only</strong><br>Opposite of Asset Only, this limits variable references to scene objects (Hierarchy), disallowing asset assignments.</li><br>
+  <li><strong>Button</strong><br>Enables calling a method directly from the Inspector using a button, great for debugging or executing editor-side functions quickly.</li>
+</ul>
 
 ###
 
@@ -18,7 +26,7 @@
 
 ###
 
-<div align="left">
+<div align="center">
   <img height="400" src="Assets/Images/documentation.png"/>
 </div>
 
