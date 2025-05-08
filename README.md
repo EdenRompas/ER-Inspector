@@ -19,7 +19,7 @@
 ###
 
 <div align="left">
-  <img height="200" src="Assets/Images/documentation.png"/>
+  <img height="400" src="Assets/Images/documentation.png"/>
 </div>
 
 ###
