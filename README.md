@@ -19,7 +19,7 @@
 ###
 
 <div align="left">
-  <img height="200" src="assset/images/er_inspector_preview.png"  />
+  <img height="200" src="Asssets/Images/er_inspector_preview.png"  />
 </div>
 
 ###
