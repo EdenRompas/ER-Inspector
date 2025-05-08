@@ -25,6 +25,14 @@ namespace EREditor.Inspector
             EditorGUILayout.Space();
 
             EditorGUILayout.BeginVertical(GUI.skin.box);
+            EditorGUILayout.LabelField("Use this library", EditorStyles.boldLabel);
+            GUILayout.Label("using EREditor.Inspector");
+            EditorGUILayout.EndVertical();
+
+            DrawSeparator();
+            EditorGUILayout.Space();
+
+            EditorGUILayout.BeginVertical(GUI.skin.box);
             EditorGUILayout.LabelField("Button", EditorStyles.boldLabel);
             GUILayout.Label("[Button]");
             GUILayout.Label("public void MethodName() {}");
@@ -63,7 +71,7 @@ namespace EREditor.Inspector
 
             EditorGUILayout.BeginVertical(GUI.skin.box);
             EditorGUILayout.LabelField("Read Only", EditorStyles.boldLabel);
-            GUILayout.Label("[ReadOnly(\"Read Only Name\")]");
+            GUILayout.Label("[ReadOnly]");
             GUILayout.Label("[SerializeField] private int _variable;");
             EditorGUILayout.EndVertical();
 
