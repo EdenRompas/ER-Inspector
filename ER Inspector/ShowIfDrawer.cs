@@ -1,67 +1,56 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace EREditor.Inspector
+[System.AttributeUsage(System.AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
+public class ShowIfAttribute : PropertyAttribute
 {
-    [System.AttributeUsage(System.AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    public class ShowIfAttribute : PropertyAttribute
-    {
-        public string conditionName;
+    public string conditionName;
 
-        public ShowIfAttribute(string conditionName)
-        {
-            this.conditionName = conditionName;
-        }
+    public ShowIfAttribute(string conditionName)
+    {
+        this.conditionName = conditionName;
     }
+}
 
 #if UNITY_EDITOR
 
-    [CustomPropertyDrawer(typeof(ShowIfAttribute))]
-    public class ShowIfDrawer : PropertyDrawer
+[CustomPropertyDrawer(typeof(ShowIfAttribute))]
+public class ShowIfDrawer : PropertyDrawer
+{
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        if (IsPropertyVisible(property))
         {
-            ShowIfAttribute showIfAttribute = attribute as ShowIfAttribute;
-
-            SerializedProperty condition = property.serializedObject.FindProperty(showIfAttribute.conditionName);
-            if (condition != null && condition.propertyType == SerializedPropertyType.Boolean)
-            {
-                bool show = condition.boolValue;
-
-                if (show)
-                {
-                    EditorGUI.PropertyField(position, property, label, true);
-                }
-            }
-            else
-            {
-                EditorGUI.HelpBox(position, "ShowIf error: Condition not found or not a boolean.", MessageType.Error);
-            }
-        }
-
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            float height = EditorGUI.GetPropertyHeight(property, label, true);
-
-            if (!IsPropertyVisible(property))
-            {
-                height += EditorGUIUtility.standardVerticalSpacing;
-            }
-
-            return height;
-        }
-
-        private bool IsPropertyVisible(SerializedProperty property)
-        {
-            ShowIfAttribute showIfAttribute = attribute as ShowIfAttribute;
-            SerializedProperty condition = property.serializedObject.FindProperty(showIfAttribute.conditionName);
-            if (condition != null && condition.propertyType == SerializedPropertyType.Boolean)
-            {
-                return condition.boolValue;
-            }
-            return false;
+            EditorGUI.PropertyField(position, property, label, true);
         }
     }
 
-#endif
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    {
+        if (!IsPropertyVisible(property))
+        {
+            return 0f;
+        }
+
+        return EditorGUI.GetPropertyHeight(property, label, true);
+    }
+
+    private bool IsPropertyVisible(SerializedProperty property)
+    {
+        ShowIfAttribute showIf = (ShowIfAttribute)attribute;
+
+        string propertyPath = property.propertyPath;
+        string conditionPath = propertyPath.Replace(property.name, showIf.conditionName);
+
+        SerializedProperty conditionProperty = property.serializedObject.FindProperty(conditionPath);
+
+        if (conditionProperty != null && conditionProperty.propertyType == SerializedPropertyType.Boolean)
+        {
+            return conditionProperty.boolValue;
+        }
+
+        return false;
+    }
 }
+
+#endif
