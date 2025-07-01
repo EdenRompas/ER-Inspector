@@ -19,7 +19,7 @@ MonoBehaviour:
     <i>Use the Library</i>
 
 
-    using ERInspector
+    using ERInspector;
 
 
     <i>Example
