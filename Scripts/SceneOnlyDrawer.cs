@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace EREditor.Inspector
+namespace ERInspector
 {
     [System.AttributeUsage(System.AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
     public class SceneOnlyAttribute : PropertyAttribute { }

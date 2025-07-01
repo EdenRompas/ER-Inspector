@@ -1,56 +1,59 @@
 using UnityEngine;
 using UnityEditor;
 
-[System.AttributeUsage(System.AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-public class ShowIfAttribute : PropertyAttribute
+namespace ERInspector
 {
-    public string conditionName;
-
-    public ShowIfAttribute(string conditionName)
+    [System.AttributeUsage(System.AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
+    public class ShowIfAttribute : PropertyAttribute
     {
-        this.conditionName = conditionName;
+        public string conditionName;
+
+        public ShowIfAttribute(string conditionName)
+        {
+            this.conditionName = conditionName;
+        }
     }
-}
 
 #if UNITY_EDITOR
 
-[CustomPropertyDrawer(typeof(ShowIfAttribute))]
-public class ShowIfDrawer : PropertyDrawer
-{
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    [CustomPropertyDrawer(typeof(ShowIfAttribute))]
+    public class ShowIfDrawer : PropertyDrawer
     {
-        if (IsPropertyVisible(property))
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            EditorGUI.PropertyField(position, property, label, true);
-        }
-    }
-
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-    {
-        if (!IsPropertyVisible(property))
-        {
-            return 0f;
+            if (IsPropertyVisible(property))
+            {
+                EditorGUI.PropertyField(position, property, label, true);
+            }
         }
 
-        return EditorGUI.GetPropertyHeight(property, label, true);
-    }
-
-    private bool IsPropertyVisible(SerializedProperty property)
-    {
-        ShowIfAttribute showIf = (ShowIfAttribute)attribute;
-
-        string propertyPath = property.propertyPath;
-        string conditionPath = propertyPath.Replace(property.name, showIf.conditionName);
-
-        SerializedProperty conditionProperty = property.serializedObject.FindProperty(conditionPath);
-
-        if (conditionProperty != null && conditionProperty.propertyType == SerializedPropertyType.Boolean)
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return conditionProperty.boolValue;
+            if (!IsPropertyVisible(property))
+            {
+                return 0f;
+            }
+
+            return EditorGUI.GetPropertyHeight(property, label, true);
         }
 
-        return false;
+        private bool IsPropertyVisible(SerializedProperty property)
+        {
+            ShowIfAttribute showIf = (ShowIfAttribute)attribute;
+
+            string propertyPath = property.propertyPath;
+            string conditionPath = propertyPath.Replace(property.name, showIf.conditionName);
+
+            SerializedProperty conditionProperty = property.serializedObject.FindProperty(conditionPath);
+
+            if (conditionProperty != null && conditionProperty.propertyType == SerializedPropertyType.Boolean)
+            {
+                return conditionProperty.boolValue;
+            }
+
+            return false;
+        }
     }
-}
 
 #endif
+}

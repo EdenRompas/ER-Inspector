@@ -1,4 +1,4 @@
-using EREditor.Inspector;
+using ERInspector;
 using UnityEngine;
 
 public class ERInspectorDemo : MonoBehaviour

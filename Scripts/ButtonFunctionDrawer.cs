@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace EREditor.Inspector
+namespace ERInspector
 {
     [AttributeUsage(AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
     public class ButtonAttribute : Attribute { }
