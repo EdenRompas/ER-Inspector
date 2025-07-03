@@ -64,19 +64,20 @@
 ###
 
 <p align="center">
-  
-<table>
-  <tr>
-    <td align="center">
-      <img src="Assets/Images/documentation-1.png" alt="Preview 1" width="300"/>
-    </td>
-    <td align="center">
-      <img src="Assets/Images/documentation-2.png" alt="Preview 2" width="300"/>
-    </td>
-  </tr>
-</table>
-
+  <table>
+    <tr>
+      <td align="center"><strong>Code Editor</strong></td>
+      <td align="center"><strong>Inspector</strong></td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="Assets/Images/documentation-1.png" alt="Preview 1" width="300"/>
+      </td>
+      <td align="center">
+        <img src="Assets/Images/documentation-2.png" alt="Preview 2" width="300"/>
+      </td>
+    </tr>
+  </table>
 </p>
-
 
 ###
