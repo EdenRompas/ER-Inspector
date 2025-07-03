@@ -8,6 +8,23 @@
 [![openupm](https://img.shields.io/npm/v/com.edenrompas.er-inspector?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.edenrompas.er-inspector/)
 [![CodeFactor](https://www.codefactor.io/repository/github/edenrompas/er-inspector/badge)](https://www.codefactor.io/repository/github/edenrompas/er-inspector)
 
+<p align="center">
+  <table>
+    <tr>
+      <td align="center"><strong>Code Editor</strong></td>
+      <td align="center"><strong>Inspector Unity</strong></td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="Assets/Images/documentation-1.png" alt="Preview 1" width="300"/>
+      </td>
+      <td align="center">
+        <img src="Assets/Images/documentation-2.png" alt="Preview 2" width="300"/>
+      </td>
+    </tr>
+  </table>
+</p>
+
 ###
 
 <h2 align="left">Features</h2>
@@ -58,28 +75,5 @@
   public void Button() {}
   ```
 </ul>
-
-###
-
-<h2 align="left">Highlight</h2>
-
-###
-
-<p align="center">
-  <table>
-    <tr>
-      <td align="center"><strong>Code Editor</strong></td>
-      <td align="center"><strong>Inspector Unity</strong></td>
-    </tr>
-    <tr>
-      <td align="center">
-        <img src="Assets/Images/documentation-1.png" alt="Preview 1" width="300"/>
-      </td>
-      <td align="center">
-        <img src="Assets/Images/documentation-2.png" alt="Preview 2" width="300"/>
-      </td>
-    </tr>
-  </table>
-</p>
 
 ###
