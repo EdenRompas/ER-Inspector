@@ -1,0 +1,21 @@
+{
+  "name": "com.edenrompas.er-inspector",
+  "version": "0.1.0",
+  "displayName": "ER Inspector",
+  "description": "Custom Unity tool designed to help developers organize the Inspector view in a cleaner",
+  "unity": "6000.0.45f1",
+  "licensesUrl": "https://opensource.org/license/MIT",
+  "keywords": [
+    "inspector",
+    "editor",
+    "TMP",
+    "custom attribute",
+    "unity",
+    "package"
+  ],
+  "author": {
+    "name": "Eden Rompas",
+    "email": "edenrompaskanter@gmail.com",
+    "url": "https://github.com/EdenRompas"
+  }
+}
