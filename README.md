@@ -17,24 +17,44 @@
   
   ```csharp
   [Title("Enter the title")]
-  private float _character;
+  private string _title;
   ```
   <li><strong>Info Box</strong><br>Displays an information box containing explanations or notes related to a serialized variable, helpful for documentation or usage guidance.</li><br>
   
   ```csharp
   [InfoBox("Enter description here")]
-  private float _camera;
+  private int _infoBox;
   ```
   <li><strong>Show If</strong><br>Conditionally displays a variable in the Inspector only if a specific boolean value is true. This helps keep the Inspector clean and only shows relevant data when needed.</li><br>
   
   ```csharp
-  [Title("Enter boolean variables")]
-  private float _camera;
+  [ShowIf("Enter boolean variables")]
+  private int _showIf;
   ```
   <li><strong>Read Only</strong><br>Makes a variable viewable but not editable in the Inspector. Ideal for displaying runtime data or values that shouldn't be modified manually.</li><br>
+
+  ```csharp
+  [ReadOnly]
+  private int _readOnly;
+  ```
   <li><strong>Asset Only</strong><br>Restricts variable assignment to assets only (e.g., prefabs, sprites, materials). It prevents scene objects from being assigned to the variable.</li><br>
+
+  ```csharp
+  [AssetOnly]
+  private int _assetOnly;
+  ```
   <li><strong>Scene Only</strong><br>Opposite of Asset Only, this limits variable references to scene objects (Hierarchy), disallowing asset assignments.</li><br>
+  
+  ```csharp
+  [SceneOnly]
+  private int _sceneOnly;
+  ```
   <li><strong>Button</strong><br>Enables calling a method directly from the Inspector using a button, great for debugging or executing editor-side functions quickly.</li>
+
+  ```csharp
+  [Button]
+  public void Button{} {}
+  ```
 </ul>
 
 ###
