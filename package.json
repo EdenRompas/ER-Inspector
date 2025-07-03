@@ -4,7 +4,12 @@
   "displayName": "ER Inspector",
   "description": "Custom Unity tool designed to help developers organize the Inspector view in a cleaner",
   "unity": "6000.0.45f1",
-  "licensesUrl": "https://opensource.org/license/MIT",
+  "author": {
+    "name": "Eden Rompas",
+    "email": "edenrompaskanter@gmail.com",
+    "url": "https://github.com/EdenRompas"
+  }
+  "license": "MIT",
   "keywords": [
     "inspector",
     "editor",
@@ -13,9 +18,16 @@
     "unity",
     "package"
   ],
-  "author": {
-    "name": "Eden Rompas",
-    "email": "edenrompaskanter@gmail.com",
-    "url": "https://github.com/EdenRompas"
-  }
+  "samples": [
+    {
+      "displayName": "Ready-to-use Inspector",
+      "description": "Contains exemplary scene",
+      "path": "Scenes"
+    },
+    {
+      "displayName": "Demo",
+      "description": "Demo",
+      "path": "Scenes"
+    }
+  ]
 }
