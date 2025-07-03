@@ -28,8 +28,8 @@
 
 ###
 
-<div align="center">
-  <img height="400" src="Assets/Images/documentation.png"/>
-</div>
+<p align="center">
+  <img src="Assets/Images/documentation.png" style="max-width: 100%; height: auto;" alt="ER Inspector Documentation Preview">
+</p>
 
 ###
