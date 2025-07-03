@@ -64,7 +64,10 @@
 ###
 
 <p align="center">
-  <img src="Assets/Images/documentation.png" style="max-width: 100%; height: auto;" alt="ER Inspector Documentation Preview">
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+    <img src="Assets/Images/image1.png" alt="Preview 1" style="max-width: 48%; height: auto; min-width: 200px;">
+    <img src="Assets/Images/image2.png" alt="Preview 2" style="max-width: 48%; height: auto; min-width: 200px;">
+  </div>
 </p>
 
 ###
