@@ -22,7 +22,7 @@
   <li><strong>Info Box</strong><br>Displays an information box containing explanations or notes related to a serialized variable, helpful for documentation or usage guidance.</li><br>
   
   ```csharp
-  [InfoBox("Enter description here")]
+  [InfoBox("Enter description")]
   private int _infoBox;
   ```
   <li><strong>Show If</strong><br>Conditionally displays a variable in the Inspector only if a specific boolean value is true. This helps keep the Inspector clean and only shows relevant data when needed.</li><br>
@@ -53,7 +53,7 @@
 
   ```csharp
   [Button]
-  public void Button{} {}
+  public void Button() {}
   ```
 </ul>
 
