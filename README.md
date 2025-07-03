@@ -14,6 +14,11 @@
 
 <ul align="left">
   <li><strong>Title</strong><br>Adds a text heading above a variable, useful for grouping or highlighting sections in the Inspector.</li><br>
+  
+  ```csharp
+  [Title("Object")]
+  private float _character;
+  ```
   <li><strong>Info Box</strong><br>Displays an information box containing explanations or notes related to a serialized variable, helpful for documentation or usage guidance.</li><br>
   <li><strong>Show If</strong><br>Conditionally displays a variable in the Inspector only if a specific boolean value is true. This helps keep the Inspector clean and only shows relevant data when needed.</li><br>
   <li><strong>Read Only</strong><br>Makes a variable viewable but not editable in the Inspector. Ideal for displaying runtime data or values that shouldn't be modified manually.</li><br>
