@@ -5,6 +5,7 @@
 <p align="left">ER Inspector is a custom Unity tool designed to help developers organize the Inspector view in a cleaner, more informative, and interactive way. With this tool, you can add visual elements such as titles, info boxes, or buttons all controllable through simple attributes within your scripts. This tool is especially useful for improving editor workflows and clarifying the structure and purpose of variables or methods in a component.</p>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/EdenRompas/ER-Inspector/total)
 
 ###
 
