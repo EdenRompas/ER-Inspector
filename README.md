@@ -65,8 +65,8 @@
 
 <p align="center">
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
-    <img src="Assets/Images/image1.png" alt="Preview 1" style="max-width: 48%; height: auto; min-width: 200px;">
-    <img src="Assets/Images/image2.png" alt="Preview 2" style="max-width: 48%; height: auto; min-width: 200px;">
+    <img src="Assets/Images/documentation-1.png" alt="Preview 1" style="max-width: 48%; height: auto; min-width: 200px;">
+    <img src="Assets/Images/documentation-2.png" alt="Preview 2" style="max-width: 48%; height: auto; min-width: 200px;">
   </div>
 </p>
 
