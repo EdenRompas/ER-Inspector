@@ -64,10 +64,19 @@
 ###
 
 <p align="center">
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
-    <img src="Assets/Images/documentation-1.png" alt="Preview 1" style="max-width: 48%; height: auto; min-width: 200px;">
-    <img src="Assets/Images/documentation-2.png" alt="Preview 2" style="max-width: 48%; height: auto; min-width: 200px;">
-  </div>
+  
+<table>
+  <tr>
+    <td align="center">
+      <img src="Assets/Images/documentation-1.png" alt="Preview 1" width="300"/>
+    </td>
+    <td align="center">
+      <img src="Assets/Images/documentation-2.png" alt="Preview 2" width="300"/>
+    </td>
+  </tr>
+</table>
+
 </p>
+
 
 ###
