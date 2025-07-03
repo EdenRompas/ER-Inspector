@@ -67,7 +67,7 @@
   <table>
     <tr>
       <td align="center"><strong>Code Editor</strong></td>
-      <td align="center"><strong>Inspector</strong></td>
+      <td align="center"><strong>Inspector Unity</strong></td>
     </tr>
     <tr>
       <td align="center">
