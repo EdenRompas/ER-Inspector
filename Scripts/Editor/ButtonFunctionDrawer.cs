@@ -3,11 +3,7 @@ using UnityEditor;
 using System;
 using System.Reflection;
 using System.Text.RegularExpressions;
-
-namespace ERInspector
-{
-    [AttributeUsage(AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
-    public class ButtonAttribute : Attribute { }
+using ERInspector;
 
 #if UNITY_EDITOR
 
@@ -122,4 +118,3 @@ namespace ERInspector
     }
 
 #endif
-}

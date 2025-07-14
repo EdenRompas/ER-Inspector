@@ -1,23 +1,11 @@
 using UnityEngine;
 using UnityEditor;
-
-namespace ERInspector
-{
-    [System.AttributeUsage(System.AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    public class ShowIfAttribute : PropertyAttribute
-    {
-        public string conditionName;
-
-        public ShowIfAttribute(string conditionName)
-        {
-            this.conditionName = conditionName;
-        }
-    }
+using ERInspector;
 
 #if UNITY_EDITOR
 
     [CustomPropertyDrawer(typeof(ShowIfAttribute))]
-    public class ShowIfDrawer : PropertyDrawer
+    public class ShowIfDrawerEditor : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -56,4 +44,3 @@ namespace ERInspector
     }
 
 #endif
-}

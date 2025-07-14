@@ -1,15 +1,11 @@
 using UnityEngine;
 using UnityEditor;
-
-namespace ERInspector
-{
-    [System.AttributeUsage(System.AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    public class ReadOnlyAttribute : PropertyAttribute { }
+using ERInspector;
 
 #if UNITY_EDITOR
 
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
-    public class ReadOnlyDrawer : PropertyDrawer
+    public class ReadOnlyDrawerEditor : PropertyDrawer
     {
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
@@ -25,4 +21,3 @@ namespace ERInspector
     }
 
 #endif
-}

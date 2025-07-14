@@ -1,22 +1,18 @@
 using UnityEngine;
 using UnityEditor;
-
-namespace ERInspector
-{
-    [System.AttributeUsage(System.AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    public class SceneOnlyAttribute : PropertyAttribute { }
+using ERInspector;
 
 #if UNITY_EDITOR
 
-    [CustomPropertyDrawer(typeof(SceneOnlyAttribute))]
-    public class SceneOnlyDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(AssetOnlyAttribute))]
+    public class AssetOnlyDrawerEditor : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             if (property.propertyType == SerializedPropertyType.ObjectReference && property.objectReferenceValue != null)
             {
-                GameObject sceneObject = property.objectReferenceValue as GameObject;
-                if (sceneObject != null && sceneObject.scene.isLoaded == false)
+                string assetPath = AssetDatabase.GetAssetPath(property.objectReferenceValue);
+                if (string.IsNullOrEmpty(assetPath))
                     property.objectReferenceValue = null;
             }
 
@@ -25,4 +21,3 @@ namespace ERInspector
     }
 
 #endif
-}

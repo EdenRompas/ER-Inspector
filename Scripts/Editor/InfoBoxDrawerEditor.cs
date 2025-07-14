@@ -1,24 +1,11 @@
 using UnityEngine;
 using UnityEditor;
-
-namespace ERInspector
-{
-    [System.AttributeUsage(System.AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    public class InfoBoxAttribute : PropertyAttribute
-    {
-        public string message;
-        public float viewWidth;
-
-        public InfoBoxAttribute(string message)
-        {
-            this.message = message;
-        }
-    }
+using ERInspector;
 
 #if UNITY_EDITOR
 
     [CustomPropertyDrawer(typeof(InfoBoxAttribute))]
-    public class InfoBoxDrawer : DecoratorDrawer
+    public class InfoBoxDrawerEditor : DecoratorDrawer
     {
         private float k_DefaultBoxHeight = 26f;
         private float k_Spacing = 2f;
@@ -38,4 +25,3 @@ namespace ERInspector
     }
 
 #endif
-}

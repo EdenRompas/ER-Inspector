@@ -1,23 +1,11 @@
 using UnityEngine;
 using UnityEditor;
-
-namespace ERInspector
-{
-    [System.AttributeUsage(System.AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    public class TitleAttribute : PropertyAttribute
-    {
-        public string title;
-
-        public TitleAttribute(string title)
-        {
-            this.title = title;
-        }
-    }
+using ERInspector;
 
 #if UNITY_EDITOR
 
     [CustomPropertyDrawer(typeof(TitleAttribute))]
-    public class TitleDrawer : DecoratorDrawer
+    public class TitleDrawerEditor : DecoratorDrawer
     {
         public override void OnGUI(Rect position)
         {
@@ -47,4 +35,3 @@ namespace ERInspector
     }
 
 #endif
-}
