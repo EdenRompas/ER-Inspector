@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(ERReadme))]
-public class ReadmeAssetEditor : Editor
+public class ERReadmeEditor : Editor
 {
     private bool _isEditMode = false;
     private Vector2 _scrollPos;
