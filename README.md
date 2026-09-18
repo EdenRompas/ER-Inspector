@@ -21,11 +21,11 @@ Layout configurations are built through a dedicated window, saved as a per-targe
 ## Screenshots
 
 ### Field Configuration Window
-![Field Configuration Window](images/images-2)
+![Field Configuration Window](docs/images/images-2)
 *The window used to pick a target script, add layout elements (Title, Group, Foldout, Tab Group), and reorder fields via drag & drop.*
 
 ### Resulting Inspector
-![Generated Inspector](images/images-1)
+![Generated Inspector](docs/images/images-1)
 *Unity's built-in Inspector automatically following the designed layout — no extra `CustomEditor` code required.*
 
 > **Note:** the two image paths above are placeholders. Replace them with actual screenshots of your window, save them under `docs/images/`, or adjust the paths to match your repo structure.
