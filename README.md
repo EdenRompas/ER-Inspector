@@ -1,79 +1,86 @@
-<h1 align="left">ER Inspector</h1>
+# ER-Inspector
 
-###
+**ER-Inspector** is a Unity Editor plugin for visually designing the Inspector layout of scripts (`MonoBehaviour` & `ScriptableObject`) via drag-and-drop — without needing to write a manual `CustomEditor` class for each script.
 
-<p align="left">ER Inspector is a custom Unity tool designed to help developers organize the Inspector view in a cleaner, more informative, and interactive way. With this tool, you can add visual elements such as titles, info boxes, or buttons all controllable through simple attributes within your scripts. This tool is especially useful for improving editor workflows and clarifying the structure and purpose of variables or methods in a component.</p>
+Layout configurations are built through a dedicated window, saved as a per-target-type asset, and automatically applied to Unity's built-in Inspector for every script of that type.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![openupm](https://img.shields.io/npm/v/com.edenrompas.er-inspector?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.edenrompas.er-inspector/)
 [![CodeFactor](https://www.codefactor.io/repository/github/edenrompas/er-inspector/badge)](https://www.codefactor.io/repository/github/edenrompas/er-inspector)
 
-<p align="center">
-  <table>
-    <tr>
-      <td align="center"><strong>Code Editor</strong></td>
-      <td align="center"><strong>Inspector Unity</strong></td>
-    </tr>
-    <tr>
-      <td align="center">
-        <img src="Assets/Images/documentation-1.png" alt="Preview 1" width="300"/>
-      </td>
-      <td align="center">
-        <img src="Assets/Images/documentation-2.png" alt="Preview 2" width="300"/>
-      </td>
-    </tr>
-  </table>
-</p>
+## Key Features
 
-###
+- **Field Configuration Window** (`Tools > Field Configuration`) — a drag-and-drop window for arranging inspector layouts.
+- **Supported layout elements**: Field (automatic), Title, Info Box, Vertical Group, Horizontal Group (2 columns: left & right), Foldout, Tab Group.
+- **Auto-applies** to all `MonoBehaviour` and `ScriptableObject` types via `CustomEditor(..., true)` — no need to create a separate Editor class per script.
+- **Unplaced fields** automatically remain visible at the root of the layout, and any field not placed anywhere is still drawn after the custom layout (no field ever silently disappears).
+- **The ✕ button** on a field doesn't delete it permanently — it will automatically reappear at the root on the next refresh (see `EnsureDefaultFieldsPresent`).
+- **Extensible, reflection-based drawer system**: adding a new layout element type only requires 1 new class + the `[LayoutNodeDrawer(typeof(X))]` attribute, and it's auto-registered without touching the window or the editor (`LayoutNodeDrawerRegistry`).
+- **Automatic persistence**: configuration is saved as an `InspectorLayoutConfig` (ScriptableObject) at `Assets/Resources/InspectorDesigner/<ScriptName>.asset`, and loaded via `Resources.Load` when the Inspector is drawn — so it works both in the Editor and in builds.
 
-<h2 align="left">Features</h2>
+## Screenshots
 
-###
+### Field Configuration Window
+![Field Configuration Window](docs/images/field-configuration-window.png)
+*The window used to pick a target script, add layout elements (Title, Group, Foldout, Tab Group), and reorder fields via drag & drop.*
 
-<ul align="left">
-  <li><strong>Title</strong><br>Adds a text heading above a variable, useful for grouping or highlighting sections in the Inspector.</li><br>
-  
-  ```csharp
-  [Title("Enter the title")]
-  private string _title;
-  ```
-  <li><strong>Info Box</strong><br>Displays an information box containing explanations or notes related to a serialized variable, helpful for documentation or usage guidance.</li><br>
-  
-  ```csharp
-  [InfoBox("Enter description")]
-  private int _infoBox;
-  ```
-  <li><strong>Show If</strong><br>Conditionally displays a variable in the Inspector only if a specific boolean value is true. This helps keep the Inspector clean and only shows relevant data when needed.</li><br>
-  
-  ```csharp
-  [ShowIf("Enter boolean variables")]
-  private int _showIf;
-  ```
-  <li><strong>Read Only</strong><br>Makes a variable viewable but not editable in the Inspector. Ideal for displaying runtime data or values that shouldn't be modified manually.</li><br>
+### Resulting Inspector
+![Generated Inspector](docs/images/generated-inspector.png)
+*Unity's built-in Inspector automatically following the designed layout — no extra `CustomEditor` code required.*
 
-  ```csharp
-  [ReadOnly]
-  private int _readOnly;
-  ```
-  <li><strong>Asset Only</strong><br>Restricts variable assignment to assets only (e.g., prefabs, sprites, materials). It prevents scene objects from being assigned to the variable.</li><br>
+> **Note:** the two image paths above are placeholders. Replace them with actual screenshots of your window, save them under `docs/images/`, or adjust the paths to match your repo structure.
 
-  ```csharp
-  [AssetOnly]
-  private int _assetOnly;
-  ```
-  <li><strong>Scene Only</strong><br>Opposite of Asset Only, this limits variable references to scene objects (Hierarchy), disallowing asset assignments.</li><br>
-  
-  ```csharp
-  [SceneOnly]
-  private int _sceneOnly;
-  ```
-  <li><strong>Button</strong><br>Enables calling a method directly from the Inspector using a button, great for debugging or executing editor-side functions quickly.</li>
+## Installation
 
-  ```csharp
-  [Button]
-  public void Button() {}
-  ```
-</ul>
+1. Copy the `Assets/Plugins/ER-Inspector` folder into your Unity project.
+2. No additional setup is required — the `Assets/Resources/InspectorDesigner/` folder is created automatically the first time a script is configured.
+3. Open the **Tools > Field Configuration** menu in the Unity Editor.
 
-###
+## Usage
+
+1. Open **Tools > Field Configuration**.
+2. Select a GameObject with the component you want to configure, or set it manually via the **Target Script** field. Check **Lock** to keep the window from switching targets when the Hierarchy selection changes.
+3. All fields that qualify as "inspectable" automatically appear as nodes at the root.
+4. Click **Add Attribute** to insert: Title, Info Box, Vertical Group, Horizontal Group, Foldout, or Tab Group.
+5. Drag a node (using the `≡` handle) to move a field/group to a different position or group.
+6. Click **Refresh** to manually reload the panel if needed.
+7. Open the Inspector for a GameObject with the same script — the layout will be rendered automatically based on the saved configuration.
+
+## Field Eligibility Rules
+
+A field is considered *inspectable* (see `FieldReflectionUtility.GetInspectableFieldNames`) if:
+
+- it is `public`, **and** does not have `[HideInInspector]`, **and** does not have `[NonSerialized]`; **or**
+- it is non-public **and** has the `[SerializeField]` attribute.
+
+## Folder Structure
+
+| Folder | Contents |
+|---|---|
+| `Data/` | `LayoutNode.cs` — all layout node types (Field, Title, InfoBox, VerticalGroup, HorizontalGroup, Foldout, TabGroup); `InspectorLayoutConfig.cs` — the ScriptableObject that stores the design per target type |
+| `Drawers/` | One drawer class per node type (implementing `ILayoutNodeDrawer`), `LayoutNodeDrawerRegistry` (reflection-based auto-discovery), `GroupBoundsStack` (helper so child elements follow the width of their enclosing group) |
+| `Editors/` | `InspectorEditor.cs` — `ConfigurableMonoBehaviourEditor` & `ConfigurableScriptableObjectEditor`, which replace the default Inspector whenever a saved configuration exists |
+| `Window/` | `FieldConfigurationWindow.cs` — a UI Toolkit-based drag-and-drop UI for designing the layout |
+| `Utility/` | `FieldReflectionUtility` (detects inspectable fields), `LayoutTreeUtility` (tree traversal for nodes), `ConfigAssetUtility` (load/create/save the config asset) |
+
+## Adding a New Layout Element Type
+
+1. Add a new subclass of `LayoutNode` in `Data/LayoutNode.cs`.
+2. Create a new class in `Drawers/` that implements `ILayoutNodeDrawer`, tagged with `[LayoutNodeDrawer(typeof(YourNewNodeType))]`.
+3. Done — the new node will automatically appear in the **Add Attribute** menu (as long as `MenuLabel` isn't `null`), with no changes needed to `FieldConfigurationWindow` or `InspectorEditor`.
+
+## Known Limitations
+
+- No explicit Undo/Redo support for drag-and-drop actions or node removal within the window.
+- Layout is stored **per script type**, not per instance/object — every object of the same type shares one layout.
+- `Horizontal Group` is limited to exactly 2 columns (left/right) for layout consistency.
+- Configuration assets live under the `Resources` folder, so they will be included in builds even though they're primarily used in the Editor — worth keeping in mind if build size is a concern.
+- There's no UI validation preventing users from creating very deep/complex group structures, which could affect IMGUI rendering performance.
+
+## Requirements
+
+- Unity with UI Toolkit/UIElements support for Editor windows (Unity 2020.3 LTS or later is recommended — adjust to whatever minimum version you've actually tested against).
+
+## License
+
+Add your project's license here (e.g. MIT, proprietary/internal, etc.).
